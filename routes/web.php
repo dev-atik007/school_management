@@ -16,16 +16,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 Route::get('/', [LoginController::class, 'login']);
 Route::post('/login', [LoginController::class, 'authLogin']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 
-Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+
 
 Route::get('/admin/list', [AdminController::class, 'list']);
+
+
+Route::group(['middleware' => 'admin'], function() {
+
+    Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+});
+
+Route::group(['middleware' => 'teacher'], function() {
+
+    Route::get('teacher/dashboard', [DashboardController::class, 'dashboard']);
+});
+
+Route::group(['middleware' => 'student'], function() {
+
+    Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
+});
+
+Route::group(['middleware' => 'parent'], function() {
+
+    Route::get('parent/dashboard', [DashboardController::class, 'dashboard']);
+});
