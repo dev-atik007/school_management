@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +21,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LoginController::class, 'login']);
 Route::post('/login', [LoginController::class, 'authLogin']);
 Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
+Route::post('forgot-password', [ForgotPasswordController::class, 'PostForgotPassword']);
+Route::get('/reset/{token}', [ResetPasswordController::class, 'reset']);
+Route::post('/reset/{token}', [ResetPasswordController::class, 'postReset']);
 
 
 
 
-Route::get('/admin/list', [AdminController::class, 'list']);
+Route::get('/admin/admin/list', [AdminController::class, 'list']);
 
 
 Route::group(['middleware' => 'admin'], function() {
