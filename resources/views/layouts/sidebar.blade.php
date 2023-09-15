@@ -33,7 +33,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="{{ url('admin/admin/list') }}" class="nav-link @if(Request::segment(2) == '') active @endif">
+                <a href="{{ route('admin.list') }}" class="nav-link @if(Request::segment(2) == 'admin') active @endif">
                   <i class="nav-icon far fa-user"></i>
                   <p>
                     Admin

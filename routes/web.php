@@ -29,12 +29,17 @@ Route::post('/reset/{token}', [ResetPasswordController::class, 'postReset']);
 
 
 
-Route::get('/admin/admin/list', [AdminController::class, 'list']);
-
 
 Route::group(['middleware' => 'admin'], function() {
 
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+    Route::get('/admin/admin/list', [AdminController::class, 'list'])->name('admin.list');
+    Route::get('/admin/admin/add', [AdminController::class, 'add'])->name('admin.add');
+    Route::post('/admin/admin/add', [AdminController::class, 'insert'])->name('insert');
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('update');
+    Route::get('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+    
 });
 
 Route::group(['middleware' => 'teacher'], function() {
