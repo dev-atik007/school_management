@@ -25,19 +25,19 @@ class AdminController extends Controller
     public function insert(Request $request)
     {
         // dd($request->all());
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6'
+        ]);
+
         $user = new User();
         $user->name = trim($request->name);
         $user->email = trim($request->email);
         $user->password = Hash::make($request->password);
         $user->user_type = 1;
         $user->save();
-        // $user=User::create([
-        //     'name'=>$request->name,
-        //     'email'=>$request->email,
-        //     'password'=>Hash::make($request->password),
-        //     'user_type'=> 1,
         
-        // ]);
 
         return redirect()->route('admin.list')->with('success', "Admin successfully created");
 
@@ -60,6 +60,10 @@ class AdminController extends Controller
 
     public function update(Request $request,$id)
     {
+        request()->validate([
+            'email' => 'required|email|unique:users,email,'.$id
+        ]);
+
         $user = User::getSingle($id);
         $user->name = trim($request->name);
         $user->email = trim($request->email);

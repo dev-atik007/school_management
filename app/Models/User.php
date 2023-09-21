@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -53,7 +54,8 @@ class User extends Authenticatable
         return self::select('users.*')
                         ->where('user_type','=',1)
                         ->orderBy('id','desc')
-                        ->get();
+                        ->paginate(2);
+                                 
     }
 
     static public function getEmailSingle($email)

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ClassController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -33,12 +35,25 @@ Route::post('/reset/{token}', [ResetPasswordController::class, 'postReset']);
 Route::group(['middleware' => 'admin'], function() {
 
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+
     Route::get('/admin/admin/list', [AdminController::class, 'list'])->name('admin.list');
     Route::get('/admin/admin/add', [AdminController::class, 'add'])->name('admin.add');
     Route::post('/admin/admin/add', [AdminController::class, 'insert'])->name('insert');
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('update');
     Route::get('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+
+    Route::get('/admin/class/list', [ClassController::class, 'list'])->name('class.list');
+    Route::get('/admin/class/add', [ClassController::class, 'add'])->name('class.add');
+    Route::post('/admin/class/add', [ClassController::class, 'insert'])->name('insert');
+    Route::get('/admin/class/edit/{id}', [ClassController::class, 'edit'])->name('class.edit');
+    Route::post('/admin/class/update/{id}', [ClassController::class, 'update'])->name('update');
+    Route::get('/admin/class/delete/{id}', [ClassController::class, 'delete'])->name('class.delete');
+
+
+    Route::get('/admin/subject/list', [SubjectController::class, 'list'])->name('subject.list');
+    Route::get('/admin/subject/add', [SubjectController::class, 'add'])->name('subject.add');
+    Route::post('/admin/subject/add', [SubjectController::class, 'insert'])->name('insert');
     
 });
 

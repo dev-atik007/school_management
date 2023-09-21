@@ -8,10 +8,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Admin Member (Total : {{ $getRecord->total() }})</h1>
+            <h1>Class List</h1>
           </div>
           <div class="col-sm-6" style="text-align: right;">
-              <a href="{{ route('admin.add') }}" class="btn btn-primary">Add new Admin</a>
+              <a href="{{ route('class.add') }}" class="btn btn-primary">Add new Class</a>
           </div>
          
         </div>
@@ -27,7 +27,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5>Search Admin</h5>
+                    <h5>Search Class</h5>
                 </div>
               <form action="" method="GET">
 
@@ -37,10 +37,7 @@
                     <label>Name</label>
                     <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
                   </div>
-                  <div class="form-group col-md-3">
-                    <label>Email address</label>
-                    <input type="text" class="form-control" value="{{ Request::get('email') }}" name="email" placeholder="Email">
-                  </div>
+                  
                   <div class="form-group col-md-3">
                     <button class="btn btn-primary" style="margin-top: 30px;">Search</button>
                     <a href="{{ route('class.list') }}" class="btn btn-success" style="margin-top: 30px;">Reset</a>
@@ -54,7 +51,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Admin List</h3>
+                <h3 class="card-title">Class List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -65,26 +62,28 @@
                       <th>Name</th>
                       <th>Status</th>
                       <th>Created By</th>
+                      <th>Created Date</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($getRecord as $value)
-                        <tr>
-                          <td>{{ $value->id }}</td>
-                          <td>{{ $value->name }}</td>
-                          <td>{{ $value->email }}</td>
-                          <td>{{ $value->created_at }}</td>
-                          <td>
-                            <a href="{{ route('admin.edit', $value->id) }}" class="btn btn-info">Edit</a>
-                            <a href="{{ route('admin.delete', $value->id) }}" class="btn btn-danger">Delete</a>
-                          </td>
-                        </tr>
-                      @endforeach
+                    @foreach ($getRecord as $value)
+                      <tr>
+                        <td>{{ $value->id }}</td>
+                        <td>{{ $value->name }}</td>
+                        <td>{{ $value->status }}</td>
+                        <td>{{ $value->created_by_name }}</td>
+                        <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
+                        <td>
+                          <a href="{{ route('class.edit', $value->id) }}" class="btn btn-info">Edit</a>
+                          <a href="{{ route('class.delete', $value->id) }}" class="btn btn-danger">Delete</a>
+                        </td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
                 <div style="padding: 10px; float:right">
-                  {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
+                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div>
                 
               </div>
