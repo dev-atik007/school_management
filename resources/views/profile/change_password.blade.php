@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Subject</h1>  
+            <h1>Change Password</h1>  
           </div>
         </div>
       </div>
@@ -16,6 +16,9 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
+
+              @include('_message')
+
             <div class="card card-primary">
 
               <form action="" method="POST">
@@ -23,30 +26,21 @@
 
               <div class="card-body">
                   <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Subject Name" required>
+                    <label>Old Password</label>
+                    <input type="password" class="form-control" value="{{ old('name') }}" name="old_password" placeholder="Enter old Password" required>
                     <div style="color: red;">{{ $errors->first('name') }}</div>
                   </div>
 
                   <div class="form-group">
-                    <label>Subject Type</label>
-                    <select name="type" class="form-control" required>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                    </select>
+                    <label>New Password</label>
+                    <input type="password" class="form-control" value="{{ old('name') }}" name="new_password" placeholder="New Password" required>
+                    <div style="color: red;">{{ $errors->first('name') }}</div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Status</label>
-                    <select name="status" class="form-control" required>
-                      <option value="theory">Theory</option>
-                      <option value="practical">Practical</option>
-                    </select>
-                  </div>
-
+                  
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div> 

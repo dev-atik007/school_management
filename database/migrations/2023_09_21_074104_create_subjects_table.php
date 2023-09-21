@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('type');
+            $table->string('created_by')->nullable();
+            $table->tinyInteger('status')->default('0')->comment('0:active, 1:inactive');
+            $table->tinyInteger('is_delete')->default('0')->comment('0:not, 1:yes');
             $table->timestamps();
         });
     }

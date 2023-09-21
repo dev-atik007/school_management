@@ -35,11 +35,11 @@
                 <div class="row">
                   <div class="form-group col-md-3">
                     <label>Name</label>
-                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name">
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Name">
                   </div>
                   <div class="form-group col-md-3">
                     <label>Email address</label>
-                    <input type="text" class="form-control" value="{{ Request::get('email') }}" name="email" placeholder="Email">
+                    <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="Email">
                   </div>
                   <div class="form-group col-md-3">
                     <button class="btn btn-primary" style="margin-top: 30px;">Search</button>
@@ -71,7 +71,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                      
+                     
                   </tbody>
                 </table>
                 <div style="padding: 10px; float:right">

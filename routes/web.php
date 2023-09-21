@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ClassController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -54,20 +55,34 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/subject/list', [SubjectController::class, 'list'])->name('subject.list');
     Route::get('/admin/subject/add', [SubjectController::class, 'add'])->name('subject.add');
     Route::post('/admin/subject/add', [SubjectController::class, 'insert'])->name('insert');
+
+
+
+    Route::get('/admin/change_password', [ChangePasswordController::class, 'changePassword']);
+    Route::post('/admin/change_password', [ChangePasswordController::class, 'update_change_password']);
     
 });
 
 Route::group(['middleware' => 'teacher'], function() {
 
     Route::get('teacher/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('/teacher/change_password', [ChangePasswordController::class, 'changePassword']);
+    Route::post('/teacher/change_password', [ChangePasswordController::class, 'update_change_password']);
 });
 
 Route::group(['middleware' => 'student'], function() {
 
     Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('/student/change_password', [ChangePasswordController::class, 'changePassword']);
+    Route::post('/student/change_password', [ChangePasswordController::class, 'update_change_password']);
 });
 
 Route::group(['middleware' => 'parent'], function() {
 
     Route::get('parent/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('/parent/change_password', [ChangePasswordController::class, 'changePassword']);
+    Route::post('/parent/change_password', [ChangePasswordController::class, 'update_change_password']);
 });
