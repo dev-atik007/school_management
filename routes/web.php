@@ -44,6 +44,7 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('update');
     Route::get('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
 
+
     Route::get('/admin/class/list', [ClassController::class, 'list'])->name('class.list');
     Route::get('/admin/class/add', [ClassController::class, 'add'])->name('class.add');
     Route::post('/admin/class/add', [ClassController::class, 'insert'])->name('insert');
@@ -55,6 +56,10 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/subject/list', [SubjectController::class, 'list'])->name('subject.list');
     Route::get('/admin/subject/add', [SubjectController::class, 'add'])->name('subject.add');
     Route::post('/admin/subject/add', [SubjectController::class, 'insert'])->name('insert');
+    Route::get('/admin/subject/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');
+    Route::post('/admin/subject/update/{id}', [SubjectController::class, 'update'])->name('subject.update');
+    Route::get('/admin/subject/delete/{id}', [SubjectController::class, 'delete'])->name('subject.delete');
+
 
 
 
