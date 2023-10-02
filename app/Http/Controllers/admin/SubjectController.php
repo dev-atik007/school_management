@@ -13,8 +13,6 @@ class SubjectController extends Controller
 {
     public function list()
     {
-       
-
         $data['header_title'] = "Subject List";
         $subject=Subject::paginate(2);
         return view('pages.subject.list', $data, compact('subject'));

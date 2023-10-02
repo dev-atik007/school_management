@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ClassController;
+use App\Http\Controllers\Admin\ClassSubjectController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Auth\ChangePasswordController;
@@ -59,6 +60,9 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/subject/edit/{id}', [SubjectController::class, 'edit'])->name('subject.edit');
     Route::post('/admin/subject/update/{id}', [SubjectController::class, 'update'])->name('subject.update');
     Route::get('/admin/subject/delete/{id}', [SubjectController::class, 'delete'])->name('subject.delete');
+
+    Route::get('/admin/assign_subject/list', [ClassSubjectController::class, 'list'])->name('assign.list');
+    Route::get('/admin/addign_subject/add', [ClassSubjectController::class, 'add'])->name('assign.add');
 
 
 

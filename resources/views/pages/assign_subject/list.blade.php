@@ -8,10 +8,10 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Subject List</h1>
+                <h1>Assign Subject List</h1>
             </div>
             <div class="col-sm-6" style="text-align: right;">
-                <a href="{{ route('subject.add') }}" class="btn btn-primary">Add new Subject</a>
+                <a href="{{ route('assign.add') }}" class="btn btn-primary">Add new Assign Subject</a>
             </div>
 
         </div>
@@ -27,7 +27,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h5>Search Subject</h5>
+                        <h5>Search Assign Subject</h5>
                     </div>
                     <form action="" method="GET">
 
@@ -51,7 +51,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Subject List</h3>
+                        <h3 class="card-title">Subject Assign List</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
@@ -60,7 +60,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Subject Type</th>
+                                    <th>Type</th>
                                     <th>Status</th>
                                     <th>Created By</th>
                                     <th>Created Date</th>
@@ -68,24 +68,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($subject as $key=>$value)
-                                <tr>
-                                    <th scope="row">{{ $key+1 }}</th>
-                                    <td>{{ $value->name }}</td>
-                                    <td>{{ $value->type }}</td>
-                                    <td>{{ $value->status }}</td>
-                                    <td>{{ $value->create_by }}</td>
-                                    <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
-                                    <td>
-                                        <a href="{{ route('subject.edit', $value->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('subject.delete', $value->id) }}" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                
                             </tbody>
                         </table>
                         <div style="padding: 10px; float:right">
-                            {{ $subject->links() }}
+                            
                         </div>
                     </div>
                 </div>
